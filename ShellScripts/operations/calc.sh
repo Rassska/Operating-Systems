@@ -11,7 +11,7 @@ if [[ $2 =~ $isNumber ]]; then
             echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit 1
 
@@ -36,7 +36,7 @@ if [[ $2 =~ $isNumber ]]; then
                 echo "Do you want to get information about operations? (yes/no)?" >&1
                     read needHelp
                     if [[ $needHelp == "yes" ]]; then
-                        cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                        cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
                     fi
                     exit 1
             else
@@ -51,7 +51,7 @@ if [[ $2 =~ $isNumber ]]; then
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit 1
 
@@ -63,7 +63,7 @@ else
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit 1
 fi

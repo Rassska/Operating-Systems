@@ -21,7 +21,12 @@ function check () {
 
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "There is no \"$1\" function." >&2 
-        exit 1
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
+            fi
+            exit -1
     fi
 }
 
@@ -35,7 +40,12 @@ case $1 in
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of calc's arguments must be equal to 4" >&2
-        exit -1
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
+            fi
+            exit -1
     fi
 ;;
 "search")
@@ -45,6 +55,11 @@ case $1 in
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of search's arguments must be equal to 3" >&2
-        exit -1
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
     fi
 esac
