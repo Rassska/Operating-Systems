@@ -19,7 +19,7 @@ function check () {
        && $1 != "search" 
        && $1 != "strlen" ]]; then
 
-        echo -ne "\e[1;41m Error: \e[0m"
+        echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "There is no \"$1\" function." >&2 
         exit 1
     fi
@@ -33,9 +33,9 @@ case $1 in
         shift
         . ./operations/calc.sh "$1" "$2" "$3"
     else
-        echo -ne "\e[1;41m Error: \e[0m"
+        echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of calc's arguments must be equal to 4" >&2
-        exit 1
+        exit -1
     fi
 ;;
 "search")
@@ -43,8 +43,8 @@ case $1 in
         shift
         . ./operations/search.sh "$1" "$2"
     else
-        echo -ne "\e[1;41m Error: \e[0m"
+        echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of search's arguments must be equal to 3" >&2
-        exit 1
+        exit -1
     fi
 esac
