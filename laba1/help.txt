@@ -5,6 +5,7 @@ Available operations of this console app:
 	1.1: sum / sub / mul / div
 	1.2: only integer number
         1.3: only integer number
+        
 
 2. search (for finding the data in the file with the given regular expression in the given directory)
 	demanded: 2 args
