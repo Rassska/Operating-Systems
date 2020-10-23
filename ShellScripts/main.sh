@@ -39,7 +39,7 @@ case $1 in
         . ./operations/calc.sh "$1" "$2" "$3"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of calc's arguments must be equal to 4" >&2
+        echo "The amount of calc's arguments must be equal to 3" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
@@ -54,11 +54,11 @@ case $1 in
         . ./operations/search.sh "$1" "$2"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of search's arguments must be equal to 3" >&2
+        echo "The amount of search's arguments must be equal to 2" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+               cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
     fi
@@ -69,84 +69,86 @@ case $1 in
         . ./operations/reverse.sh "$1" "$2"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "The amount of reverse's arguments must be equal to 2" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
     fi
 
 ;;
 "strlen")
-	if [ $# == 2 ]
-	then
+	if [[ $# == 2 ]]; then
 		shift
 		. ./operations/strlen.sh "$@"
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "The amount of strlen's arguments must be equal to 1" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
 	fi
 ;;
 "log")
-	if [ $# == 1 ]
-	then
+	if [[ $# == 1 ]]; then
 		. ./operations/log.sh
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "The amount of log's arguments must be equal to 0" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
 	fi
 ;;
 "exit")
-	if [ $# == 2 ]
-	then
+	if [[ $# == 2 ]]; then
     shift
 		. ./operations/exit.sh $1
 	else
-		exit 0
+		echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of exit's arguments must be equal to 1" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
+            fi
+            exit -1
 	fi
 ;;
 
 "help")
-	if [ $# == 1 ]
-	then
+	if [[ $# == 1 ]]; then
 		cat help.txt
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "The amount of help's arguments must be equal to 0" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
 	fi
 ;;
 
 "interactive")
-	if [ $# == 1 ]
-	then
+	if [[ $# == 1 ]]; then
 		exec sh . ./operations/interactive.sh
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "The amount of interactive's arguments must be equal to 0" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             exit -1
 	fi
