@@ -2,21 +2,6 @@
 
 isInteractive="yes"
 
-menu () {
-echo -e "List of available commands:\e[0m"
-echo -e "\e[1;31mEnter the char or the name of the command\e[0m"
-echo -e "\e[1;33ma. calc"
-echo -e "b. search"
-echo -e "c. reverse"
-echo -e "d. strlen"
-echo -e "e. log"
-echo -e "f. exit"
-echo -e "g. help"
-echo -e "h. interactive\e[0m"
-echo -e "\e[1;31mPress x to quit.\e[0m"
-}
-
-
 calc () {
     
     if [[ -e ./operations/calc.sh ]]; then
@@ -106,7 +91,17 @@ interactive () {
 
 while true
 do
-	menu
+	echo -e "List of available commands:\e[0m"
+    echo -e "\e[1;31mEnter the char or the name of the command\e[0m"
+    echo -e "\e[1;33ma. calc"
+    echo -e "b. search"
+    echo -e "c. reverse"
+    echo -e "d. strlen"
+    echo -e "e. log"
+    echo -e "f. exit"
+    echo -e "g. help"
+    echo -e "h. interactive\e[0m"
+    echo -e "\e[1;31mPress x to quit.\e[0m"
 	read command
 	if [[ $command == "a" ]] || [[ $command == "calc" ]]; then
 		calc
