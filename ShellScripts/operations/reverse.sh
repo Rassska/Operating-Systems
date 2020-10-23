@@ -29,14 +29,6 @@ if [[ -e $1 ]]; then # if the first file is existing
 				fi
 				
 			else
-				if ! touch "$2" 2>/dev/null
-				then
-					echo -ne "\e[1;41m Error: \e[0m" >&2
-					echo "There is no permission to create file here!" >&2
-					if [[ $isInteractive == "no" ]]; then
-           				exit 3
-        			fi
-				else
 					touch "$2"
 					tac $1 >> temp.txt
    					rev temp.txt > $2
