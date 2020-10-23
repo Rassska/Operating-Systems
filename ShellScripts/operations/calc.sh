@@ -13,7 +13,7 @@ if [[ $2 =~ $isNumber ]]; then
             echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
             if [[ $isInteractive == "no" ]]; then
                 exit 1
