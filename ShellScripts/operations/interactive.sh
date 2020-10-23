@@ -20,10 +20,8 @@ echo -e "\e[1;31mPress x to quit.\e[0m"
 calc () {
     
     if [[ -e ./operations/calc.sh ]]; then
-        echo -e "\e[1;33mEnter 3 arguments:"
-        echo -e "1.Enter sum or sub or mul or div"
+        echo -e "1.Enter sum or sub or mul or div and parameters"
         echo -e "Both of the args must be equal to integer values"
-        echo -e "operation arg1 arg2 \e[0m"
         read operation arg1 arg2
         . ./operations/calc.sh $isInteractive $operation $arg1 $arg2
     else
@@ -34,10 +32,7 @@ calc () {
 
 search () {
     if [[ -e ./operations/search.sh ]]; then
-        echo -e "\e[1;33mEnter 2 arguments:"
-        echo -e "1. directiry name"
-        echo -e "2. regular expression you want to find"
-        echo -e "directory expression\e[0m"
+        echo -e "Read directory expression\e[0m"
         read dir expr
         . ./operations/search.sh $isInteractive $dir $expr
     else
@@ -48,10 +43,7 @@ search () {
 
 reverse () {
     if [[ -e ./operations/reverse.sh ]]; then
-        echo -e "\e[1;33mEnter 2 arguments:"
-        echo -e "1. input file (preferably with text in it)))"
-        echo -e "2. output file (where to reverse the text)"
-        echo -e "input output\e[0m"
+        echo -e "Read input output files\e[0m"
         read in out
         . ./operations/reverse.sh $isInteractive $in $out
     else
@@ -62,8 +54,7 @@ reverse () {
 
 strlen () {
     if [[ -e ./operations/strlen.sh ]]; then
-        echo -e "\e[1;33mEnter 1 argument:"
-        echo -e "1. 'string'\e[0m"
+        echo -e "1. Read 'string'\e[0m"
         read str
         . ./operations/strlen.sh $isInteractive $str
     else
@@ -117,24 +108,24 @@ while true
 do
 	menu
 	read command
-	if [[ $command == "a" ]] || [[ $command == "calc" ]] || [[ $command == "a. calc" ]]; then
+	if [[ $command == "a" ]] || [[ $command == "calc" ]]; then
 		calc
-	else if [[ $command == "b" ]] || [[ $command == "search" ]] || [[ $command == "b. search" ]]; then
+	else if [[ $command == "b" ]] || [[ $command == "search" ]]; then
 		search
-	else if [[ $command == "c" ]] || [[ $command == "reverse" ]] || [[ $command == "c. reverse" ]]; then
+	else if [[ $command == "c" ]] || [[ $command == "reverse" ]]; then
 		reverse
-	else if [[ $command == "d" ]] || [[ $command == "strlen" ]] || [[ $command == "d. strlen" ]]; then
+	else if [[ $command == "d" ]] || [[ $command == "strlen" ]]; then
 		strlen
-	else if [[ $command == "e" ]] || [[ $command == "log" ]] || [[ $command == "e. log" ]]; then
+	else if [[ $command == "e" ]] || [[ $command == "log" ]]; then
 		log
-	else if [[ $command == "f" ]] || [[ $command == "exit" ]] || [[ $command == "f. exit" ]]; then
+	else if [[ $command == "f" ]] || [[ $command == "exit" ]]; then
 		exitCode
-	else if [[ $command == "g" ]] || [[ $command == "help" ]] || [[ $command == "g. help" ]]; then
+	else if [[ $command == "g" ]] || [[ $command == "help" ]]; then
 		help
-	else if [[ $command == "h" ]] || [[ $command == "interactive" ]] || [[ $command == "h. interactive" ]]; then
+	else if [[ $command == "h" ]] || [[ $command == "interactive" ]]; then
 		interactive
-	else if [[ $command == "x" ]] || [[ $command == "quit" ]] || [[ $command == "q" ]]; then
-		exit
+	else if [[ $command == "x" ]] || [[ $command == "quit" ]]; then
+		exit 0
 	fi
 	fi
 	fi
