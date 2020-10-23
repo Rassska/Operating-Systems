@@ -34,7 +34,7 @@ check $1
 
 case $1 in
 "calc")
-    if [ $# == 4 ]; then
+    if [[ $# == 4 ]]; then
         shift
         . ./operations/calc.sh "$1" "$2" "$3"
     else
@@ -49,7 +49,7 @@ case $1 in
     fi
 ;;
 "search")
-    if [ $# == 3 ]; then
+    if [[ $# == 3 ]]; then
         shift
         . ./operations/search.sh "$1" "$2"
     else
@@ -62,4 +62,93 @@ case $1 in
             fi
             exit -1
     fi
+;;
+"reverse")
+    if [[ $# == 3 ]]; then
+        shift
+        . ./operations/reverse.sh "$1" "$2"
+    else
+        echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
+    fi
+
+;;
+"strlen")
+	if [ $# == 2 ]
+	then
+		shift
+		. ./operations/strlen.sh "$@"
+	else
+		echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
+	fi
+;;
+"log")
+	if [ $# == 1 ]
+	then
+		. ./operations/log.sh
+	else
+		echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
+	fi
+;;
+"exit")
+	if [ $# == 2 ]
+	then
+    shift
+		. ./operations/exit.sh $1
+	else
+		exit 0
+	fi
+;;
+
+"help")
+	if [ $# == 1 ]
+	then
+		cat help.txt
+	else
+		echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
+	fi
+;;
+
+"interactive")
+	if [ $# == 1 ]
+	then
+		exec sh . ./operations/interactive.sh
+	else
+		echo -ne "\e[1;41m Error: \e[0m" >&2
+        echo "The amount of reverse's arguments must be equal to 3" >&2
+        echo "Do you want to get information about operations? (yes/no)?" >&1
+            read needHelp
+            if [[ $needHelp == "yes" ]]; then
+                cat /home/rasul/dev/OperatingSystems/laba1/help.txt | more
+            fi
+            exit -1
+	fi
+;;
 esac
