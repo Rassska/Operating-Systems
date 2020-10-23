@@ -9,6 +9,8 @@
 # search.sh
 # strlen.sh
 # main.sh
+isInteractive="no"
+
 function check () {
     if [[ $1 != "calc" 
        && $1 != "exit" 
@@ -35,8 +37,8 @@ check $1
 case $1 in
 "calc")
     if [[ $# == 4 ]]; then
-        shift
-        . ./operations/calc.sh "$1" "$2" "$3"
+        shift # remove calc
+        . ./operations/calc.sh "$isInteractive" "$1" "$2" "$3"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of calc's arguments must be equal to 3" >&2
@@ -45,13 +47,15 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
     fi
 ;;
 "search")
     if [[ $# == 3 ]]; then
         shift
-        . ./operations/search.sh "$1" "$2"
+        . ./operations/search.sh "$isInteractive" "$1" "$2"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of search's arguments must be equal to 2" >&2
@@ -60,13 +64,15 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
     fi
 ;;
 "reverse")
     if [[ $# == 3 ]]; then
         shift
-        . ./operations/reverse.sh "$1" "$2"
+        . ./operations/reverse.sh "$isInteractive" "$1" "$2"
     else
         echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of reverse's arguments must be equal to 2" >&2
@@ -75,7 +81,9 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
     fi
 
 ;;
@@ -91,12 +99,14 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
 	fi
 ;;
 "log")
 	if [[ $# == 1 ]]; then
-		. ./operations/log.sh
+		. ./operations/log.sh "$isInteractive"
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of log's arguments must be equal to 0" >&2
@@ -105,22 +115,26 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
 	fi
 ;;
 "exit")
-	if [[ $# == 2 ]]; then
+	if [[ $# == 2 || $# == 1 ]]; then
     shift
-		. ./operations/exit.sh $1
+		. ./operations/exit.sh "$isInteractive" $1
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
-        echo "The amount of exit's arguments must be equal to 1" >&2
+        echo "The amount of exit's arguments must be equal to 1 or 0" >&2
         echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
 	fi
 ;;
 
@@ -135,13 +149,15 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
 	fi
 ;;
 
 "interactive")
 	if [[ $# == 1 ]]; then
-		exec sh . ./operations/interactive.sh
+		. ./operations/interactive.sh
 	else
 		echo -ne "\e[1;41m Error: \e[0m" >&2
         echo "The amount of interactive's arguments must be equal to 0" >&2
@@ -150,7 +166,9 @@ case $1 in
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit -1
+            if [[ $isInteractive == "no" ]]; then
+                exit -1
+            fi
 	fi
 ;;
 esac

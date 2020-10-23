@@ -1,7 +1,9 @@
 #!/bin/bash
 
 isNumber='^[+-]?[0-9]+$'
-isNotZero='^-?[1-9][0-9]*$'
+isInteractive="$1"
+
+shift # remove data of is Interactive or not
 
 if [[ $2 =~ $isNumber ]]; then
     if [[ $3 =~ $isNumber ]]; then
@@ -11,9 +13,11 @@ if [[ $2 =~ $isNumber ]]; then
             echo "Do you want to get information about operations? (yes/no)?" >&1
             read needHelp
             if [[ $needHelp == "yes" ]]; then
-                /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
+                cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt
             fi
-            exit 1
+            if [[ $isInteractive == "no" ]]; then
+                exit 1
+            fi
 
         fi
         
@@ -30,15 +34,13 @@ if [[ $2 =~ $isNumber ]]; then
             echo -ne "\e[32mok: \e[0m" >&2
             echo $(( $1 * $2 ))>&1
         elif [[ $1 = "div" ]]; then
-            if ! [[ $3 =~ isNotZero ]]; then
+            if [[ $3 == 0 ]]; then
                 echo -ne "\e[1;41m Error: \e[0m" >&2
                 echo "Divided by zeroooo!!!!" >&2
-                echo "Do you want to get information about operations? (yes/no)?" >&1
-                    read needHelp
-                    if [[ $needHelp == "yes" ]]; then
-                        cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
-                    fi
+                
+                if [[ $isInteractive == "no" ]]; then
                     exit 1
+                fi
             else
                 shift
                 echo -ne "\e[32mok: \e[0m" >&2
@@ -53,7 +55,9 @@ if [[ $2 =~ $isNumber ]]; then
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit 1
+            if [[ $isInteractive == "no" ]]; then
+                exit 1
+            fi
 
         
     fi
@@ -65,5 +69,7 @@ else
             if [[ $needHelp == "yes" ]]; then
                 cat /home/rasul/dev/OperatingSystems/ShellScripts/help.txt | more
             fi
-            exit 1
+            if [[ $isInteractive == "no" ]]; then
+                exit 1
+            fi
 fi
