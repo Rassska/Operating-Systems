@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for ProcessID in $(ps --no-headers -ef | awk '{print $2}') # i is pid
+for ProcessID in $(ps --no-headers -ef | awk '{print $2}') 
 do
 	
     ProcessPID=$(cat /proc/"$ProcessID"/status 2>/dev/null | awk '{if ($1 == "PPid:") print $2}')
@@ -12,7 +12,11 @@ do
         then echo "$ProcessID $ProcessPID $Average_Running_Time"
 	fi
     
-done | sort -k 2 | awk '{print "ProcessID="$1" : ParentProcessID="$2" : Average_Running_Time="$3""}' > task4Out.txt
+done | sort -n -k 2 | awk '{print "ProcessID="$1" : ParentProcessID="$2" : Average_Running_Time="$3""}' > task4Out.txt
+
+
+sed -i 's/,/./g' task4Out.txt
+
 
 # The "sum_exec_runtime/nr_switches" number is also interesting:
 # it shows the average time ('scheduling atom') a task has spent
