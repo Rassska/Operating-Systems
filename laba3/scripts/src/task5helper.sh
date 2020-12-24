@@ -4,10 +4,10 @@ res=1
 mod="*"
 
 (tail -f pipe) |
-while true; 
+for (( i=1; i <= 10;))
 do
     read string;
-    
+
     case $string in 
     QUIT)
         echo "See you, man!"
