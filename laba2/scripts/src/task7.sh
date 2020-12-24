@@ -38,6 +38,6 @@ do
 
 done | sort -n -r -k 3 | head -n 3
 
-rm task7Out.txt helper.txt
+rm -rf task7Out.txt helper.txt
 
 
