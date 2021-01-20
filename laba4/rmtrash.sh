@@ -13,8 +13,8 @@ fi
 mkdir $HOME/.trash;
 ln $1 $HOME/.trash/$RANDOM
 
-echo "deleted path: $PWD/$1 created link: $RANDOM" >> $HOME/.trash.log
-
 # vim .trash.log
 # rm -rf .trash.log
 # rm $1
+
+echo "deleted path: $PWD/$1 created link: $RANDOM" >> $HOME/.trash.log
