@@ -5,11 +5,11 @@ IFS=$'\n'
 if !(( $# == 1 )); then
     echo "Wrond amount of args!"
     exit -1
-fi
-
-if [[ $1 == *"/"* ]]; then
-    echo "Only file anotherName, not the path"
-    exit -2
+else
+    if [[ $1 == *"/"* ]]; then
+        echo "Only file name, not the path"
+        exit -2
+    fi
 fi
 
 
@@ -36,8 +36,8 @@ do
             
             if [ -d $currDiectory ]; then
                 if [ -f $givenFilePath ]; then
-                    read -p "This file exists, try another: " anotherName
-                    ln $HOME/.trash/$receivingFile $currDiectory/$anotherName
+                    read -p "This file exists, try another: " anotherFile
+                    ln $HOME/.trash/$receivingFile $currDiectory/$anotherFile
 
                 else
                     ln $HOME/.trash/$receivingFile $givenFilePath
@@ -45,8 +45,8 @@ do
 
             else
                 if [ -f $HOME/$1 ]; then
-                    read -p "This file exists, try another: " anotherName
-                    ln $HOME/.trash/$receivingFile $HOME/$anotherName
+                    read -p "This file exists, try another: " anotherFile
+                    ln $HOME/.trash/$receivingFile $HOME/$anotherFile
 
                 else
                     ln $HOME/.trash/$receivingFile $HOME/$1
