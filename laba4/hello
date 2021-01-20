@@ -10,11 +10,10 @@ if [[ ! -f $1 ]]; then
     exit -2
 fi
 
-mkdir $HOME/.trash;
+mkdir $HOME/.trash && echo "hidden folder created" || echo "hidden folder exists";
+
 ln $1 $HOME/.trash/$RANDOM
 
-echo "deleted path: $PWD/$1 created link: $RANDOM" >> $HOME/.trash.log
+echo "deleted path: $PWD/$1 created link: $date" >> $HOME/.trash.log
 
-# vim .trash.log
-# rm -rf .trash.log
-# rm $1
+rm $1
