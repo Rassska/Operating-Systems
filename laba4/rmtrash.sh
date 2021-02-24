@@ -15,7 +15,8 @@ fi
 mkdir $HOME/.trash;
 ln $1 $HOME/.trash/$currDate
 
-# rm $1
+
 
 echo "path deleted: $PWD/$1 link createdd: $currDate" >> $HOME/.trash.log
 
+rm $1

@@ -13,18 +13,19 @@ else
 fi
 
 
-[ -f $HOME/.trash.log ] || { exit -1; };
-[ -d "$HOME/.trash" ] || { exit -1; };
-[ -s $HOME/.trash.log ] || { exit -1; };
-
+[ -f $HOME/.trash.log ] || { echo "trash.log doesn't exist"; exit -1; };
+[ -s $HOME/.trash.log ] || { echo "trash.log is empty"; exit -2; };
+[ -d "$HOME/.trash" ] || { echo ".trash doesn't exist"; exit -3; };
 
 cntFile=0
 
 for currFileToRef in $(cat $HOME/.trash.log)
 do
     givenFilePath=$(echo $currFileToRef | awk '{ print $3 }')
+    
 
     if [[ $1 == "$(echo $givenFilePath | awk -F/ '{ print $NF }')" ]]; then
+        
         let cntFile=$cntFile+1
         echo "Path: $givenFilePath"
 
@@ -38,18 +39,22 @@ do
                 if [ -f $givenFilePath ]; then
                     read -p "This file exists, try another: " anotherFile
                     ln $HOME/.trash/$receivingFile $currDiectory/$anotherFile
+                    echo "$receivingFile was recovered in $currDiectory!"
 
                 else
                     ln $HOME/.trash/$receivingFile $givenFilePath
+                    echo "$receivingFile was recovered in $currDiectory!"
                 fi
 
             else
                 if [ -f $HOME/$1 ]; then
                     read -p "This file exists, try another: " anotherFile
                     ln $HOME/.trash/$receivingFile $HOME/$anotherFile
+                    echo "$receivingFile was recovered in HOME directory!"
 
                 else
                     ln $HOME/.trash/$receivingFile $HOME/$1
+                    echo "$receivingFile was recovered in HOME directory!"
                 fi
 
             fi
