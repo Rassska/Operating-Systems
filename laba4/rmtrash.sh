@@ -1,5 +1,7 @@
 #!/bin/bash
 
+currDate=$(date +'%F_%H-%M-%S');
+
 if !(( $# == 1 )); then
     echo "Wrond amount of args!"
     exit -1
@@ -11,10 +13,9 @@ if [[ ! -f $1 ]]; then
 fi
 
 mkdir $HOME/.trash;
-ln $1 $HOME/.trash/$RANDOM
+ln $1 $HOME/.trash/$currDate
 
-# vim .trash.log
-# rm -rf .trash.log
 # rm $1
 
-echo "deleted path: $PWD/$1 created link: $RANDOM" >> $HOME/.trash.log
+echo "path deleted: $PWD/$1 link createdd: $currDate" >> $HOME/.trash.log
+
