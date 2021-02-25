@@ -29,9 +29,9 @@ do
         let cntFile=$cntFile+1
         echo "Path: $givenFilePath"
 
-        read -p "(yes/no)?" currStatus
+        read -p "(y/n)?" currStatus
         case $currStatus in
-        [yes]* )
+        [y]* )
             receivingFile=$(echo $currFileToRef | awk '{ print $6 }')
             currDiectory=$(echo $givenFilePath | awk 'BEGIN{ FS=OFS="/" }{ NF--; print }')
             
@@ -64,11 +64,11 @@ do
         rm -rf $HOME/.trash/$receivingFile
         ;;
 
-        [no]* )
+        [n]* )
             ;;
 
         * )
-            echo "there is no this command"
+            echo "unavailable command! Try again!"
             ;;
         esac
     fi
