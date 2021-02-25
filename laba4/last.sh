@@ -1,9 +1,12 @@
 #!/bin/bash
+currPath="/home/m_rassska"
 
-[ -d "/home/m_rassska/restPoints" ] && rm -rf /home/m_rassska/restPoints || mkdir /home/m_rassska/restPoints
-[ -z $(ls /home/m_rassska | grep -E "Backup-[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}" | sort -n -r | head -n 1) ] && { echo "there are no backUp files"; exit -2; }
+LastBackUpName=$(ls $currPath | grep -E "Backup-[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}" | sort -n -r | head -n 1)
 
-for currPoint in $(ls /home/m_rassska/$(ls /home/m_rassska | grep -E "Backup-[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}" | sort -n -r | head -n 1) | grep -Ev "\.[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}$")
+[ -d "$currPath/restore" ] && rm $currPath/restore/* || mkdir $currPath/restore
+
+
+for currFile in $(ls $currPath/$LastBackUpName | grep -Ev "\.[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}$")
 do
-    cp /home/m_rassska/$(ls /home/m_rassska | grep -E "Backup-[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}" | sort -n -r | head -n 1)/$currPoint /home/m_rassska/restPoints/
+    cp $currPath/$LastBackUpName/$currFile $currPath/restore/
 done
