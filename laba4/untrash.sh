@@ -16,7 +16,6 @@ fi
 [ -f $HOME/.trash.log ] || { echo "trash.log doesn't exist"; exit -1; };
 [ -d "$HOME/.trash" ] || { echo ".trash doesn't exist"; exit -3; };
 
-cntFile=0
 
 for currFileToRef in $(cat $HOME/.trash.log)
 do
@@ -25,9 +24,8 @@ do
 
     if [[ $1 == "$(echo $givenFilePath | awk -F/ '{ print $NF }')" ]]; then
         
-        let cntFile=$cntFile+1
+        
         echo "Path: $givenFilePath"
-
         read -p "(y/n)?" currStatus
         case $currStatus in
         [y]* )
