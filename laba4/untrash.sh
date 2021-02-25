@@ -13,6 +13,9 @@ else
 fi
 
 
+[ -f $HOME/.trash.log ] || { echo "trash.log doesn't exist"; exit -1; };
+[ -d "$HOME/.trash" ] || { echo ".trash doesn't exist"; exit -3; };
+
 cntFile=0
 
 for currFileToRef in $(cat $HOME/.trash.log)
