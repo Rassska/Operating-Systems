@@ -6,9 +6,11 @@ if !(( $# == 1 )); then
     echo "Wrond amount of args!"
     exit -1
 fi
-
+# vim rmtrash.sh
 if [[ ! -f $1 ]]; then
     echo "Current file doesn't exist!"
+    #echo hello
+    #exit 0
     exit -2
 fi
 
