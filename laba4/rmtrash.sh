@@ -1,5 +1,5 @@
 #!/bin/bash
-
+IFS=$'\n'
 currDate=$(date +'%F_%H-%M-%S');
 
 if !(( $# == 1 )); then

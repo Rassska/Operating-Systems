@@ -1,5 +1,5 @@
 #!/bin/bash
-
+IFS=$'\n'
 currPath="/home/m_rassska"
 
 commonDate=$(date +'%F')
